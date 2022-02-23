@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.globalLogic.tests</groupId>
+    <artifactId>GlobalLogic_Test</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <driver.version>4.1.2</driver.version>
+        <serenity.version>3.2.0</serenity.version>
+        <serenity.jbehave.version>1.46.0</serenity.jbehave.version>
+        <serenity.maven.version>1.2.2</serenity.maven.version>
+        <selenium.properties>selenium.properties</selenium.properties>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>prod</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>prod</value>
+                </property>
+            </activation>
+            <properties>
+                <webdriver.base.url>http://demowebshop.tricentis.com/</webdriver.base.url>
+            </properties>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.0</version>
+            </plugin>
+            <plugin>
+                <groupId>net.serenity-bdd.maven.plugins</groupId>
+                <artifactId>serenity-maven-plugin</artifactId>
+                <version>${serenity.maven.version}</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${driver.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-core</artifactId>
+            <version>${serenity.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-junit</artifactId>
+            <version>${serenity.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-jbehave</artifactId>
+            <version>${serenity.jbehave.version}</version>
+        </dependency>
+
+    </dependencies>
+
+</project>

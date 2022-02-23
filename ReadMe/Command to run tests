@@ -1,0 +1,4 @@
+Run/Debug Configurations:
+
+1. Add new Maven configuration
+2. Command Line: clean verify -Dmetafilter=+test -Denv=prod
